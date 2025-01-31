@@ -29,7 +29,28 @@ public class Server {
             System.err.println("Problemi di connessione con il client");
             throw new RuntimeException(e);
         }
-        return null;
+        return clientSocket;
+    }
+
+    public void leggi(){
+
+    }
+
+    public void scrivi(){
+
+    }
+
+    public void chiudi(){
+        try {
+            clientSocket.close();
+            System.out.println("5) Chiusura comunicazione con il client");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void termina(){
+
     }
 }
 
