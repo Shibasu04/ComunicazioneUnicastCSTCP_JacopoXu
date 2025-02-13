@@ -1,10 +1,10 @@
 package comunicazioneunicastcstcp_jacopoxu;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.net.ConnectException;
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.net.SocketException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.*;
 import java.rmi.UnexpectedException;
 
 public class Client {
@@ -25,9 +25,9 @@ public class Client {
             System.err.println("Errone server non in ascolto nella porta");
             throw new RuntimeException(e);
         }
-        catch(UnexpectedHostException e){
+        catch(UnknownHostException ex){
             System.err.println("Errone server non in ascolto nella porta");
-            throw new RuntimeException(e);
+            throw new RuntimeException(ex);
         }
         catch (IOException e) {
             System.err.println("Errone nella fase di connessione");
