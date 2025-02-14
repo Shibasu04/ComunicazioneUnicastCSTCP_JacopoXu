@@ -1,9 +1,6 @@
 package comunicazioneunicastcstcp_jacopoxu;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.*;
 import java.rmi.UnexpectedException;
 
@@ -36,11 +33,33 @@ public class Client {
     }
 
     public void leggi(){
-
+        InputStream i;
+        BufferedReader br;
+        String s;
+        try {
+            i = socket.getInputStream();
+            br = new BufferedReader(new InputStreamReader(i));
+            s = br.readLine();
+            System.out.println("Il messaggio ricevuto è " + s);
+        } catch (IOException e) {
+            System.out.println("Il messaggio non è stato ricevuto");
+            throw new RuntimeException(e);
+        }
     }
 
     public void scrivi(){
-
+        OutputStream o;
+        PrintWriter pw;
+        String s;
+        try {
+            o = socket.getOutputStream();
+            pw = new PrintWriter(o);
+            pw.flush();
+            System.out.println("Il messaggio scritto è " + o);
+        } catch (IOException e) {
+            System.out.println("Il messaggio non è stato scritto");
+            throw new RuntimeException(e);
+        }
     }
 
     public void chiudi(){

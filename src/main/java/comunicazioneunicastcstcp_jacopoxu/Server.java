@@ -26,7 +26,6 @@ public class Server {
     }
 
     public Socket attendi(){
-
         try {
             clientSocket = serverSocket.accept();
             System.out.println("2) Connessione con il client avvenuta e data socket creato");
@@ -62,7 +61,7 @@ public class Server {
             pw.flush();
             System.out.println("Il messaggio scritto è " + o);
         } catch (IOException e) {
-            System.out.println("Il messaggio non è stato ricevuto");
+            System.out.println("Il messaggio non è stato scritto");
             throw new RuntimeException(e);
         }
     }
