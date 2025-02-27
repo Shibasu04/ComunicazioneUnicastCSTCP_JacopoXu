@@ -21,7 +21,6 @@ public class Server {
             System.out.println("1) Server in ascolto sulla porta" + porta);
         } catch (IOException e) {
             System.err.println("Errore del server nella fase di binding");
-            throw new RuntimeException(e);
         }
     }
 
@@ -31,7 +30,6 @@ public class Server {
             System.out.println("2) Connessione con il client avvenuta e data socket creato");
         } catch (IOException e) {
             System.err.println("Problemi di connessione con il client");
-            throw new RuntimeException(e);
         }
         return clientSocket;
     }
@@ -47,7 +45,6 @@ public class Server {
             System.out.println("Il messaggio ricevuto è " + s);
         } catch (IOException e) {
             System.out.println("Il messaggio non è stato ricevuto");
-            throw new RuntimeException(e);
         }
     }
 
@@ -56,13 +53,13 @@ public class Server {
         PrintWriter pw;
         String s;
         try {
+            s = "Tamponbox";
             o = clientSocket.getOutputStream();
             pw = new PrintWriter(o);
-            pw.flush();
+            pw.println(s);
             System.out.println("Il messaggio scritto è " + o);
         } catch (IOException e) {
             System.out.println("Il messaggio non è stato scritto");
-            throw new RuntimeException(e);
         }
     }
 
@@ -71,7 +68,7 @@ public class Server {
             clientSocket.close();
             System.out.println("5) Chiusura comunicazione con il client");
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.err.println("Errore nella chiusura3");
         }
     }
 

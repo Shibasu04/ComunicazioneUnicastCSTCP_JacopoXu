@@ -20,19 +20,16 @@ public class Client {
         }
         catch(ConnectException e){
             System.err.println("Errone server non in ascolto nella porta");
-            throw new RuntimeException(e);
         }
         catch(UnknownHostException ex){
             System.err.println("Errone server non in ascolto nella porta");
-            throw new RuntimeException(ex);
         }
         catch (IOException e) {
             System.err.println("Errone nella fase di connessione");
-            throw new RuntimeException(e);
         }
     }
 
-    public void leggi(){
+    public void leggi() {
         InputStream i;
         BufferedReader br;
         String s;
@@ -43,7 +40,6 @@ public class Client {
             System.out.println("Il messaggio ricevuto è " + s);
         } catch (IOException e) {
             System.out.println("Il messaggio non è stato ricevuto");
-            throw new RuntimeException(e);
         }
     }
 
@@ -52,13 +48,13 @@ public class Client {
         PrintWriter pw;
         String s;
         try {
+            s = "Tamponbox";
             o = socket.getOutputStream();
             pw = new PrintWriter(o);
-            pw.flush();
-            System.out.println("Il messaggio scritto è " + o);
+            pw.println(s);
+            System.out.println("Il messaggio scritto è " + s);
         } catch (IOException e) {
             System.out.println("Il messaggio non è stato scritto");
-            throw new RuntimeException(e);
         }
     }
 
@@ -68,7 +64,7 @@ public class Client {
                 socket.close();
                 System.out.println("4)Chiusura della connessione con il server");
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                System.err.println("Errore nella chiusura");
             }
         }
     }
